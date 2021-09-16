@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="exempel.html">
+<link rel="stylesheet" href="dinosaurgame.html">
+
+<style>
+    .number{
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        margin: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .first-element{
+        background-color: aquamarine;
+        cursor: default;
+    }
+
+    .matched{
+        color: #eee;
+        border-color: #eee;
+        cursor: default;
+    }
+</style>
+
+<button>Add</button>
+<a href="exempel.html"><button>exempel.html</button></a>
+<a href="dinosaurgame.html"><button>game</button></a>
+
+<script>
+    var button = document.querySelector("button");
+    var firstElement = null;
+    // button.style.backgroundColor = "red";
+
+    button.onclick = function(){
+        //alert("Hello World!");
+        // button.innerHTML = "Clicked!";
+        // button.style.color = "red";
+        // var element = document.createElement("h1");
+        // element.innerHTML = "Hello World!";
+        // element.classList.add("rubrik");
+        // element.onclick = function(){
+        //     element.style.backgroundColor = "lime";
+        //     document.body.removeChild(element);
+        // }
+
+        // document.body.appendChild(element);
+
+        // document.body.insertAdjacentHTML("beforeBegin","<br><br><br><i>Text2</i>");
+        for(var i = 0; i < 10; i++){
+            document.body.appendChild(createElement());
+        }
+
+    }
+
+    function createElement(){
+        var element = document.createElement("div");
+        element.innerHTML = Math.ceil(Math.random()*9);
+        element.classList.add("number");
+
+        element.onclick = function(){
+            if(element == firstElement || element.classList.contains("matched")){
+                return;
+            }
+            if(firstElement == null){
+                firstElement = element;
+                element.classList.add("first-element");
+            }
+            else{
+                var number1 = parseInt(firstElement.innerHTML);
+                var number2 = parseInt(element.innerHTML);
+                if(number1 == number2 || number1 + number2 == 10){
+                    element.classList.add("matched");
+                    firstElement.classList.add("matched");
+                }
+                firstElement.classList.remove("first-element");
+                firstElement = null;
+            }
+        }
+
+        return element;  
+    }
+</script>

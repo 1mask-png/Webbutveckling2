@@ -1,0 +1,109 @@
+
+<style>
+    .game{
+        width: 600px;
+        height: 200px;
+        margin: auto;
+        border: solid 1px black;
+    }
+
+    #dino{
+        width: 50px;
+        height: 50px;
+        background-image: url(dino.png);
+        background-size: 50px 50px;
+        position: relative;
+        top: 150px;
+    }
+
+    .jump{ 
+        animation: jump 0.5s linear;
+    }
+
+    @keyframes jump{
+        0%{
+            top: 150px;
+        }
+
+        30%{
+            top: 110px;
+        }
+
+        50%{
+            top: 80px;
+        }
+
+        80%{
+            top: 110px;
+        }
+
+        90%{
+            top: 130px;
+        }
+
+        100%{
+            top: 150px;
+        }
+    }
+
+    #cactus{
+        width: 20px;
+        height: 40px;
+        position: relative;
+        top: 110px;
+        left: 580px;
+
+        background-image: url(cactus.png);
+        background-size: 20px 40px;
+
+        animation: block 1s infinite;
+    }
+
+    @keyframes block{
+        0%{
+            left: 580px;
+        }
+
+        100%{
+            left: 0px;
+        }
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.html">
+    <title>Game</title>
+</head>
+<body>
+
+    <div class="game" >
+        <div id="dino"></div>
+        <div id="cactus"></div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    const dino = document.getElementById("dino");
+
+    function jump(){
+        if(dino.classList != "jump"){
+
+            dino.classList.add("jump");
+
+            setTimeout( function (){
+                dino.classList.remove("jump")
+            }, 300);
+        }
+    }
+
+    document.addEventListener("keydown", function (event){
+        jump();
+    });
+</script>
