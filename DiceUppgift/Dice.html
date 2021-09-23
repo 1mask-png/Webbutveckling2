@@ -4,13 +4,23 @@
     }
 
     .ruta{
-        border: 1px solid black;
-        box-shadow: 5px 1px;
+        box-shadow: 5px 1px 11px rgb(194, 192, 192);
         border-radius: 4%;
         padding: 40px;
         margin-left: 10px;
         margin-right: 10px;
         list-style-type: none;
+    }
+
+    th{
+        padding-left: 40px;
+        text-align: center;
+    }
+
+    h1{
+        text-align: center;
+        font-size: 13px;
+        font-weight: 10;
     }
 </style>
 
@@ -30,36 +40,54 @@
             <button class="btn btn-primary" id="btn-dice"> <i class ="far fa-dice-two"></i> Kasta</button>
         </div>
         <div class = "ruta">
-            <table>
-                <th style="flex-direction: column;">Siffra<h1></h1></th>
-                <th>Historik<h1></h1></th>
-                <th>Medelvärde<h1></h1></th>
+            <table class="table-info">
+                <th class="table-info">Siffra<h1></h1></th>            
+                <th class="table-info">Antal slag<h1 id="Slag"></h1></th>
+                <th class="table-info">Totalt värde<h1 id ="TotalValue"></h1></th>
+                <th class="table-info">Medelvärde<h1 id="average"></h1></th>
+                <th class="table-info">Historik<h1 id="Historik"></h1></th>                
             </table>
         </div>
     </body>
 
-    <script>
-        var summa = 0;
-        d = new Array();
+    <script>      
+        var diceElement = document.getElementById("btn-dice");
+        var SenasteKast = document.querySelector("h1");
+        var Historik = document.getElementById("Historik");
+        var Slag = document.getElementById("Slag");
+        var Totalt = document.getElementById("TotalValue");
+        var medel = document.getElementById("average");
 
         class Dice{
             constructor(){
                 this.Value = 0;
                 this.NumOfRolls = 0;
                 this.TotalValue = 0;
+                this.AverageValue = 0;
+                this.HistorikArray = [];
             }
             Roll(){
-                this.Value = Math.floor(Math.random()*7);            
-                this.NumOfRolls ++;            
+                this.Value = Math.floor(Math.random()*6 + 1);            
+                this.NumOfRolls ++;               
+                this.TotalValue += this.Value;   
+                this.HistorikArray.push(this.Value);
+            }
+            GetAverageValue(){
+                this.AverageValue = this.TotalValue / this.NumOfRolls;            
             }
         }
+
         var dice = new Dice();
-        var diceElement = document.getElementById("btn-dice");
-        var displayElement = document.querySelector("h1");
         
         diceElement.onclick = function(){
             dice.Roll();    
-            displayElement.innerHTML = dice.Value;
+            SenasteKast.innerHTML = dice.Value; 
+            Totalt.innerHTML = dice.TotalValue;  
+            dice.GetAverageValue(); 
+            Slag.innerHTML = dice.NumOfRolls;  
+            medel.innerHTML = dice.AverageValue.toFixed(2);            
+             
+            Historik.innerHTML = dice.HistorikArray.join(" ");
         }
     </script>
 </html>
