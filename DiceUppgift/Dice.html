@@ -38,6 +38,8 @@
     <body>
         <div id="div">
             <button class="btn btn-primary" id="btn-dice"> <i class ="far fa-dice-two"></i> Kasta</button>
+            <button class="btn btn-danger" id="Delete-btn"> <i class="fas fa-trash-alt"></i> Rensa</button>
+            <button class="btn btn-secondary" id="Reload" ><i class="fas fa-sync-alt"></i> Reload </button>
         </div>
         <div class = "ruta">
             <table class="table-info">
@@ -57,6 +59,8 @@
         var Slag = document.getElementById("Slag");
         var Totalt = document.getElementById("TotalValue");
         var medel = document.getElementById("average");
+        var TaBort = document.getElementById("Delete-btn");
+        var Reload = document.getElementById("Reload");
 
         class Dice{
             constructor(){
@@ -88,6 +92,15 @@
             medel.innerHTML = dice.AverageValue.toFixed(2);            
              
             Historik.innerHTML = dice.HistorikArray.join(" ");
+        }
+
+        TaBort.onclick = function(){
+            dice.HistorikArray.length = 0;
+            Historik.innerHTML = dice.HistorikArray.splice(0, dice.HistorikArray.lenght);
+        }
+
+        Reload.onclick = function(){
+            location.reload();
         }
     </script>
 </html>
