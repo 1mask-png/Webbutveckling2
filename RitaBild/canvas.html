@@ -1,6 +1,6 @@
 <style>
-    canvas{ 
-        position:absolute;  
+    ::-webkit-scrollbar{
+        display: none;
     }
 </style>
 
@@ -17,16 +17,16 @@
 </html>
 
 <script>
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");   
+    let c = document.getElementById("myCanvas");
+    let ctx = c.getContext("2d");   
     
     //Grass
     ctx.fillStyle = "darkolivegreen";
-    ctx.fillRect(10, 10, 1500, 1000);
+    ctx.fillRect(0, 0, 1500, 1000);
 
     //Sky
     ctx.fillStyle = "lightblue";
-    ctx.fillRect(10, 10, 1500, 400);
+    ctx.fillRect(0, 0, 1500, 400);
     
     //House
     ctx.fillStyle = "brown";
@@ -38,7 +38,7 @@
 
     //Road
     ctx.fillStyle = "gray";
-    ctx.fillRect(10, 410, 990, 90);
+    ctx.fillRect(0, 410, 1000, 90);
 
     //Body + arms
     ctx.fillStyle = "red";
@@ -47,11 +47,6 @@
     ctx.fillRect(530, 320, 20, 100);
     ctx.fillStyle = "red";
     ctx.fillRect(640, 320, 20, 100);
-
-    //Text on T-shirt
-    ctx.font = "12px Katarina";
-    ctx.fillStyle = "black";
-    ctx.fillText("\"Hello World\"", 560, 355);
 
     //Legs
     ctx.fillStyle = "black";
@@ -65,12 +60,6 @@
     ctx.beginPath();
     ctx.arc(595, 290, 40, 0, 2 * Math.PI);   
     ctx.fillStyle = "burlywood";
-    ctx.fill();
-
-    //Hair
-    ctx.beginPath();
-    ctx.arc(595, 290, 40, 16, 2 * Math.PI);   
-    ctx.fillStyle = "black";
     ctx.fill();
 
     //Eyes
